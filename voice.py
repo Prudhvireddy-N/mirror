@@ -256,7 +256,10 @@ def process_event(text,assistant,board,client):
                 changezoomstate=1
             elif ((text.find('fix')!=-1 or text.find('book')!=-1) and (text.find('meeting')!=-1 or text.find('appointment')!=-1 or text.find('event')!=-1)):
                 assistant.send_text_query(text)
-            
+            #Added by ranjitha
+            elif((text.find('on')!=-1 or text.find('lights')!=1 or text.find('light')!=-1)):
+                operate_lights()
+            #till here
             else:
                 assistant.send_text_query(text)
                 time.sleep(1);
@@ -402,6 +405,27 @@ def show_news():
     
 def close_compliments():
     r = requests.get('http://127.0.0.1:8080/remote?action=HIDE&module=module_1_compliments')
+
+#Added by ranjitha
+def operate_lights():
+    url1 = "http://192.168.88.174:80/api/devices/7/action/setValue"
+    url2 = "http://192.168.88.174:80/api/devices/12/action/setValue"
+    url3 = "http://192.168.88.174:80/api/devices/17/action/setValue"
+    url4 = "http://192.168.88.174:80/api/devices/27/action/setValue"
+    payload = "{\r\n  \"args\": [\r\n    10\r\n  ]\r\n}"
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic YWRtaW46YWRtaW4='
+    }
+
+    response1 = requests.request("POST", url1, headers=headers, data=payload)
+    response2 = requests.request("POST", url2, headers=headers, data=payload)
+    response3 = requests.request("POST", url3, headers=headers, data=payload)
+    response4 = requests.request("POST", url4, headers=headers, data=payload)
+#End
+
+
+
 
 def main():
     logging.basicConfig(level=logging.INFO)
