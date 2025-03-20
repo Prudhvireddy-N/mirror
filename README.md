@@ -1,7 +1,2 @@
-# mirror
+# Smart mirror
 
-eishoiursz;ofeaonfvkjsbfivbds
-
-rngiursdfjlsjfuiudslekopdodo
-
-fdfd
